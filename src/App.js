@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext, useEffect, useState } from 'react';
+import { BrowserRouter } from "react-router-dom";
+import  AppRouter  from './components/AppRouter';
 
-function App() {
+import MyNavbar from "./components/MyNavbar";
+import { observer } from "mobx-react-lite";
+import { Context } from "./index";
+import { Spinner, Container } from "react-bootstrap";
+import {check} from "./http/userAPI";
+
+const App = observer(() => {
+  const { user } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    check().then(data => {
+        user.setUser(true)
+        user.setIsAuth(true)
+    }).finally(() => setLoading(false))
+}, [])
+
+  // if (loading) {
+  //   return (
+  //     <Container className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+  //       <Spinner animation={"grow"} variant="danger" />
+  //     </Container>
+  //   );
+  // }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MyNavbar />
+      <AppRouter />
+    </BrowserRouter>
   );
-}
+});
 
 export default App;

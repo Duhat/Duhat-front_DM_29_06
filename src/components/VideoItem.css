@@ -1,0 +1,17 @@
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    width: 100%; /* Добавьте, чтобы контейнер занимал всю ширину карточки */
+  }
+  
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important; /* Важно - !important, чтобы перекрыть inline стили */
+    height: 100% !important;
+    border: none;
+  }
+  

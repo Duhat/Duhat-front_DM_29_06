@@ -1,0 +1,19 @@
+.video-player-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #222; /* тёмный фон, если видео не загрузилось */
+    overflow: hidden;
+  }
+  
+  .video-player-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+    display: block;
+    background: #222;
+  }
+  
